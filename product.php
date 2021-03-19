@@ -1,27 +1,40 @@
 <?php 
+include "dbconn.php";
+include_once('functions.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include "functions.php";
-include "dbconn.php";
+$id= get('id');
 $name = $slug = $sku = $moq = $categories = $search_keywords = $price = $discount_type = $discount_value ='';
 $error = array('name' =>'', 'slug' =>'', 'sku' => '','moq'=>'','categories'=>'','search_keywords'=>'','price'=>'','discount_type'=>'','discount_value'=>'');
-$id= get('id');
+
 if (isset($_POST['submit'])){
 	if (empty($_POST['name'])){
 			$error['name']="name can be required" ;
-		}else{  
+	}else{  
 		$name=$_POST['name'];
+		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $name)){
+			$error['name'] =  "name can be only letter" ;
+			
+		}
 	}
  	if (empty($_POST['slug'])){
  		$error['slug'] =  "slug can be required" ;
  	}else{
 	 	$slug=$_POST['slug'];
+	 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $slug)){
+			$error['slug'] =  "slug can be only letter" ;
+	
+		}
 	}
  	if(empty($_POST['sku'])){
  		$error['sku'] =  "sku can be required" ;
  	}else{
 	 	$sku=$_POST['sku'];
+	 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $sku)){
+			$error['sku'] =  "sku can be only letter" ;
+
+		}
  	}
  	if(empty($_POST['moq'])){
  		$error['moq'] = 'moq is required' . '</br>';
@@ -35,11 +48,17 @@ if (isset($_POST['submit'])){
     	$error['categories'] =  "categories can be required" ;
  	}else{
 	 	$categories=$_POST['categories'];
+	 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $categories)){
+			$error['categories'] =  "categories can be only letter" ;
+		}
     }
     if(empty($_POST['search_keywords'])){
     	$error['search_keywords'] =  "search_keywords can be required" ;
  	}else{
 	 	$search_keywords=$_POST['search_keywords'];
+	 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $search_keywords)){
+			$error['search_keywords'] =  "search_keywords can be only letter" ;
+		}
     }
     if(empty($_POST['price'])){
  		$error['price'] = 'price is required' . '</br>';
@@ -53,6 +72,9 @@ if (isset($_POST['submit'])){
     	$error['discount_type'] =  "discount_type can be required" ;
  	}else{
 	 	$discount_type= $_POST['discount_type'];
+	 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $discount_type)){
+			$error['discount_type'] =  "discount_type can be only letter" ;
+		}
     }
     if(empty($_POST['discount_value'])){
  		$error['discount_value'] = 'discount_value is required';
@@ -63,36 +85,44 @@ if (isset($_POST['submit'])){
  		}
  	}
    	if (!array_filter($error)){
- 		
-		$update = array();
-		echo $update['name'] = $name;
-		echo $update['slug'] = $slug;
-		echo $update['sku'] = $sku;
-		echo $update['moq'] = $moq;
-		echo $update['categories'] = $categories;
-		echo $update['search_keywords'] = $search_keywords;
-		echo $update['price'] = $price;
-		echo $update['discount_type'] = $discount_type;
-		echo $update['discount_value'] = $discount_value;
-		
-		if(isset($_GET['id'])){
-			
-			$wh = "id='" . $id . "'";
-			echo $res = update('product', $wh, $update);
 
-			header("location:product_form.php");
+		$update = array();
+		$update['name'] = $name;
+		$update['slug'] = $slug;
+		$update['sku'] = $sku;
+		$update['moq'] = $moq;
+		$update['categories'] = $categories;
+		$update['search_keywords'] = $search_keywords;
+		$update['price'] = $price;
+		$update['discount_type'] = $discount_type;
+		$update['discount_value'] = $discount_value;
+	
+		if(isset($_GET['id'])){
+			echo "test";
+			$id=$_GET['id'];
+			$wh = "id='" . $id . "'";
+			$res = update('product', $wh, $update , $dbh);
+			if(!$res){
+				mysqli_error($dbh);
+			}else{
+				header("Location: product_form.php");
+			}
+			
 			
 			// $edit=mysqli_query($dbh,"UPDATE product SET name='$name', slug='$slug', sku='$sku', moq='$moq', categories='$categories', search_keywords='$search_keywords', price='$price', discount_type='$discount_type',discount_value='$discount_value' WHERE id='$id'");
+			//echo $edit;
 			// if($edit){
 			// 	header("location:product_form.php");
 			// }else{
 			// 	mysqli_error();
-			// }
+			//}
 		}else{
-			insert('product',$update,$dbh);
-			echo "test";
-			header("location:product_form.php");
-		
+			$sql=insert('product', $update , $dbh);
+			if(!$sql){
+				mysqli_error($dbh);
+			}else{
+			header("Location: product_form.php");
+			}
 			// $sql = mysqli_query($dbh,"INSERT INTO product(name, slug, sku, moq, categories, search_keywords, price, discount_type, discount_value) VALUES('$name', '$slug','$sku', '$moq', '$categories', '$search_keywords', '$price','$discount_type', '$discount_value')");
 		 //     if(!$sql)
 		 //    {
@@ -103,6 +133,7 @@ if (isset($_POST['submit'])){
 			// 	header('location:product_form.php');    	
 			// }
 		}
+
 	}
 }
 if(isset($_GET['id'])){
