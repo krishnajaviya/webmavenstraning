@@ -1,6 +1,10 @@
 <?php
 include "dbconn.php";
-
+include_once('functions.php');
+$select =mysqli_query($dbh,"SELECT * FROM product ORDER BY id DESC");
+$id=get('id');
+$wh = "id='" . $id . "'";
+delete('product',$wh);
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,9 +20,7 @@ include "dbconn.php";
 	<div class="container">
 	<form action="" method="POST">
 	<button type="button" name="add product" class="btn btn-success"><a href="product.php">Add Product</a></button>
-	<?php 
-	//$projects = array();
-	$select =mysqli_query($dbh,"SELECT * FROM product ORDER BY id DESC");?>
+	
 		<table class="table">
 		<thead>
 		<tr>
@@ -51,7 +53,8 @@ include "dbconn.php";
 		<td><?php echo $raw['price'];?></td>
 		<td><?php echo $raw['discount_type'];?></td>
 		<td><?php echo $raw['discount_value'];?></td>
-		<td><button name ="edit"><a href="product.php?id=<?php echo $raw['id'];?>">Edit</a></button></td>
+		<td><button type="submit" name ="edit"><a href="product.php?id=<?php echo $raw['id'];?>">Edit</a></button></td>
+		<td><button type="submit"name ="delete"><a href="product_form.php?id=<?php echo $raw['id'];?>">Delete</a></button></td>
 		</tr>
 		<?php 
 	

@@ -1,4 +1,3 @@
-
 <?php
 $_debug = true;
 $_report = false;
@@ -167,11 +166,13 @@ function insert($table, $data, $con = "") {
         $sets[] = "$k=\"" . mysqli_real_escape_string($con, $v) . "\"";
     }
     $q = "INSERT INTO " . $table . " SET " . implode(", ", $sets);
+    //echo $q;
     $data = "";
     mysqli_query_custom($q, $con);
     return mysqli_insert_id($con);
 }
 function update($table, $where, $data, $asIs = "", $con = "") {
+    
     global $dbh;
     if (!$con) {
         $con = $dbh;
@@ -186,6 +187,7 @@ function update($table, $where, $data, $asIs = "", $con = "") {
         }
     }
     $q = "UPDATE `" . $table . "` SET " . implode(", ", $sets) . " WHERE $where";
+    echo $q;
     $data = "";
     return mysqli_query_custom($q, $con);
 }
@@ -201,8 +203,6 @@ function insertorupdate($table, $data, $where, $asIs = "", $con) {
         $action = "UPDATE ";
         $data = _update($data);
     }
-
-
     foreach ($data as $k => $v) {
         if ($asIs) {
             $sets[] = "`$k`=" . $v . "";
@@ -484,7 +484,7 @@ function backup_tables($tables = '*') {
     return $filename;
 }
 // audit fields functions
-function _insert(array $data) {
+function _insert($data) {
 
     if (is_array($data)) {
         if (!array_key_exists('audit_created_by', $data)) {

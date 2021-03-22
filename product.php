@@ -1,92 +1,111 @@
 <?php 
 include "dbconn.php";
 include_once('functions.php');
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$id= get('id');
+
 $name = $slug = $sku = $moq = $categories = $search_keywords = $price = $discount_type = $discount_value ='';
 $error = array('name' =>'', 'slug' =>'', 'sku' => '','moq'=>'','categories'=>'','search_keywords'=>'','price'=>'','discount_type'=>'','discount_value'=>'');
 
+$id = get('id');
+$name = get('name');
+$slug = get('slug');
+$sku = get('sku');
+$moq = get('moq');
+$categories = get('categories');
+$search_keywords = get('search_keywords');
+$price = get('price');
+$discount_type = get('discount_type');
+$discount_value = get('discount_value');
+
 if (isset($_POST['submit'])){
+	// $().ready(function(){
+	// 	rules:{
+	// 		name :"required",
+	// 		slug :"required",
+	// 		sku :"requird",
+	// 		categories:"required",
+	// 		search_keywords:"required",
+	// 		price:"required",
+	// 		discount_type:"requird",
+	// 		discount_value:"requird"
+	// 	},
+	// 	messages:{
+	// 		name="Please enter name",
+	// 		slug="Please enter slug",
+	// 		sku="Please enter sku",
+	// 		categories="Please enter categories",
+	// 		search_keywords="Please enter search_keywords",
+	// 		price="Please enter price",
+	// 		discount_type="Please enetr discount type",
+	// 		discount_value="please enter discount value"
+
+	// 	}
+	// });
 	if (empty($_POST['name'])){
-			$error['name']="name can be required" ;
-	}else{  
+		$error['name']="name can be required" ;
+	}else{
 		$name=$_POST['name'];
 		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $name)){
 			$error['name'] =  "name can be only letter" ;
-			
 		}
 	}
- 	if (empty($_POST['slug'])){
- 		$error['slug'] =  "slug can be required" ;
- 	}else{
-	 	$slug=$_POST['slug'];
-	 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $slug)){
-			$error['slug'] =  "slug can be only letter" ;
-	
-		}
-	}
- 	if(empty($_POST['sku'])){
- 		$error['sku'] =  "sku can be required" ;
- 	}else{
-	 	$sku=$_POST['sku'];
-	 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $sku)){
-			$error['sku'] =  "sku can be only letter" ;
 
-		}
- 	}
- 	if(empty($_POST['moq'])){
- 		$error['moq'] = 'moq is required' . '</br>';
- 	}else{
- 		$moq = $_POST['moq'];
- 		if(!filter_var($moq, FILTER_VALIDATE_INT)){
- 			$error['moq'] = "moq can be number";
+	if (empty($_POST['slug'])){
+		$error['slug'] =  "slug can be required" ;
+	}else{
+		$slug=$_POST['slug'];
+		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $slug)){
+			$error['slug'] =  "slug can be only letter" ;
 		}
 	}
-    if(empty($_POST['categories'])){
-    	$error['categories'] =  "categories can be required" ;
- 	}else{
-	 	$categories=$_POST['categories'];
-	 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $categories)){
-			$error['categories'] =  "categories can be only letter" ;
+	
+	if(empty($_POST['sku'])){
+		$error['sku'] =  "sku can be required" ;
+	}else{
+		$sku=$_POST['sku'];
+		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $sku)){
+			$error['sku'] =  "sku can be only letter" ;
 		}
-    }
-    if(empty($_POST['search_keywords'])){
-    	$error['search_keywords'] =  "search_keywords can be required" ;
- 	}else{
-	 	$search_keywords=$_POST['search_keywords'];
-	 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $search_keywords)){
+	}
+	if(empty($_POST['moq'])){
+		$error['moq']= "moq is required";
+	}else{
+		$moq=$_POST['moq'];
+	}
+	if(empty($_POST['search_keywords'])){
+		$error['search_keywords'] =  "search_keywords can be required" ;
+	}else{
+		$search_keywords=$_POST['search_keywords'];
+		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $search_keywords)){
 			$error['search_keywords'] =  "search_keywords can be only letter" ;
 		}
-    }
-    if(empty($_POST['price'])){
- 		$error['price'] = 'price is required' . '</br>';
- 	}else{
- 		$price = $_POST['price'];
- 		if(!filter_var($price, FILTER_VALIDATE_INT)){
- 			$error['price'] ='price can be integer';
- 		}
- 	}
- 	if(empty($_POST['discount_type'])){
-    	$error['discount_type'] =  "discount_type can be required" ;
- 	}else{
-	 	$discount_type= $_POST['discount_type'];
-	 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $discount_type)){
+	}
+	if(empty($_POST['price'])){
+		$error['price']= "price is required";
+	}else{
+		$moq=$_POST['price'];
+	}
+	if(empty($_POST['discount_type'])){
+		$error['discount_type'] =  "discount typecan be required" ;
+	}else{
+		$search_keywords=$_POST['discount_type'];
+		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $discount_type)){
 			$error['discount_type'] =  "discount_type can be only letter" ;
 		}
-    }
-    if(empty($_POST['discount_value'])){
- 		$error['discount_value'] = 'discount_value is required';
- 	}else{
- 		$discount_value = $_POST['discount_value'];
- 		if(!filter_var($discount_value, FILTER_VALIDATE_INT)){
- 			$error['discount_value']="discount_value can be integer";
- 		}
- 	}
-   	if (!array_filter($error)){
-
-		$update = array();
+	}
+	if(empty($_POST['discount_value'])){
+		$error['discount_value']= "discount value is required";
+	}else{
+		$moq=$_POST['discount_value'];
+	}
+	
+	if ($error['name'] != '' || $error['slug'] != '' || $error['sku'] != '' || $error['moq'] != '' || $error['categories'] != '' || $error['search_keywords'] != '' || $error['price'] != '' || $error['discount_type'] != '' || $error['discount_value'] != ''){
+		echo "Error";
+	}else{
+		$upadate=array();
 		$update['name'] = $name;
 		$update['slug'] = $slug;
 		$update['sku'] = $sku;
@@ -96,59 +115,40 @@ if (isset($_POST['submit'])){
 		$update['price'] = $price;
 		$update['discount_type'] = $discount_type;
 		$update['discount_value'] = $discount_value;
-	
+
 		if(isset($_GET['id'])){
-			echo "test";
+			// Update
 			$id=$_GET['id'];
 			$wh = "id='" . $id . "'";
-			$res = update('product', $wh, $update , $dbh);
+			$res = update('product', $wh, $update);
+			header("Location: product_form.php");
 			if(!$res){
 				mysqli_error($dbh);
 			}else{
 				header("Location: product_form.php");
 			}
-			
-			
-			// $edit=mysqli_query($dbh,"UPDATE product SET name='$name', slug='$slug', sku='$sku', moq='$moq', categories='$categories', search_keywords='$search_keywords', price='$price', discount_type='$discount_type',discount_value='$discount_value' WHERE id='$id'");
-			//echo $edit;
-			// if($edit){
-			// 	header("location:product_form.php");
-			// }else{
-			// 	mysqli_error();
-			//}
 		}else{
-			$sql=insert('product', $update , $dbh);
-			if(!$sql){
-				mysqli_error($dbh);
-			}else{
+			// Insert
+			insert('product',$update,$dbh);
 			header("Location: product_form.php");
-			}
-			// $sql = mysqli_query($dbh,"INSERT INTO product(name, slug, sku, moq, categories, search_keywords, price, discount_type, discount_value) VALUES('$name', '$slug','$sku', '$moq', '$categories', '$search_keywords', '$price','$discount_type', '$discount_value')");
-		 //     if(!$sql)
-		 //    {
-		 //    	echo mysqli_error();
-		 //    }
-			// else
-			// {
-			// 	header('location:product_form.php');    	
-			// }
+			
 		}
-
 	}
 }
 if(isset($_GET['id'])){
+	// Get product data
 	$select =mysqli_query($dbh,"SELECT * FROM product WHERE id ='$id'");
 	while($raw =mysqli_fetch_array($select)){
 		$id=$raw['id'];
-	   	$name= $raw['name'];
-	    $slug= $raw['slug'];
-	    $sku= $raw['sku'];
-	    $moq= $raw['moq'];
-	    $categories =$raw['categories'];
-	    $search_keywords = $raw['search_keywords'];
-	    $price =$raw['price'];
-	    $discount_type =$raw['discount_type'];
-	    $discount_value= $raw['discount_value'];
+		$name= $raw['name'];
+		$slug= $raw['slug'];
+		$sku= $raw['sku'];
+		$moq= $raw['moq'];
+		$categories =$raw['categories'];
+		$search_keywords = $raw['search_keywords'];
+		$price =$raw['price'];
+		$discount_type =$raw['discount_type'];
+		$discount_value= $raw['discount_value'];
 	}
 }
 ?>
@@ -157,16 +157,17 @@ if(isset($_GET['id'])){
 <head>
 	<title></title>
 	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/jquery.validate.js"></script>
+	<script src="js/product.form.js"></script>
 </head>
 <body>
 	<div class ="container">
-		<form method="POST" action="">
+		<form method="POST">
 			<div class="form-group">
-				<input type="hidden" name="id">
 				<div class="row">
 					<div class="col">
 						Name:<input type="text" name="name" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($name)?>" required>
@@ -215,7 +216,10 @@ if(isset($_GET['id'])){
 		</form>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+	<script>
+		$("#commentform").validate();
+	</script>
 </body>
 </html>
