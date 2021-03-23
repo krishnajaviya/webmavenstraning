@@ -21,86 +21,63 @@ $discount_type = get('discount_type');
 $discount_value = get('discount_value');
 
 if (isset($_POST['submit'])){
-	// $().ready(function(){
-	// 	rules:{
-	// 		name :"required",
-	// 		slug :"required",
-	// 		sku :"requird",
-	// 		categories:"required",
-	// 		search_keywords:"required",
-	// 		price:"required",
-	// 		discount_type:"requird",
-	// 		discount_value:"requird"
-	// 	},
-	// 	messages:{
-	// 		name="Please enter name",
-	// 		slug="Please enter slug",
-	// 		sku="Please enter sku",
-	// 		categories="Please enter categories",
-	// 		search_keywords="Please enter search_keywords",
-	// 		price="Please enter price",
-	// 		discount_type="Please enetr discount type",
-	// 		discount_value="please enter discount value"
-
+	// if (empty($_POST['name'])){
+	// 	$error['name']="name can be required" ;
+	// }else{
+	// 	$name=$_POST['name'];
+	// 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $name)){
+	// 		$error['name'] =  "name can be only letter" ;
 	// 	}
-	// });
-	if (empty($_POST['name'])){
-		$error['name']="name can be required" ;
-	}else{
-		$name=$_POST['name'];
-		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $name)){
-			$error['name'] =  "name can be only letter" ;
-		}
-	}
+	// }
 
-	if (empty($_POST['slug'])){
-		$error['slug'] =  "slug can be required" ;
-	}else{
-		$slug=$_POST['slug'];
-		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $slug)){
-			$error['slug'] =  "slug can be only letter" ;
-		}
-	}
+	// if (empty($_POST['slug'])){
+	// 	$error['slug'] =  "slug can be required" ;
+	// }else{
+	// 	$slug=$_POST['slug'];
+	// 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $slug)){
+	// 		$error['slug'] =  "slug can be only letter" ;
+	// 	}
+	// }
 	
-	if(empty($_POST['sku'])){
-		$error['sku'] =  "sku can be required" ;
-	}else{
-		$sku=$_POST['sku'];
-		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $sku)){
-			$error['sku'] =  "sku can be only letter" ;
-		}
-	}
-	if(empty($_POST['moq'])){
-		$error['moq']= "moq is required";
-	}else{
-		$moq=$_POST['moq'];
-	}
-	if(empty($_POST['search_keywords'])){
-		$error['search_keywords'] =  "search_keywords can be required" ;
-	}else{
-		$search_keywords=$_POST['search_keywords'];
-		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $search_keywords)){
-			$error['search_keywords'] =  "search_keywords can be only letter" ;
-		}
-	}
-	if(empty($_POST['price'])){
-		$error['price']= "price is required";
-	}else{
-		$moq=$_POST['price'];
-	}
-	if(empty($_POST['discount_type'])){
-		$error['discount_type'] =  "discount typecan be required" ;
-	}else{
-		$search_keywords=$_POST['discount_type'];
-		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $discount_type)){
-			$error['discount_type'] =  "discount_type can be only letter" ;
-		}
-	}
-	if(empty($_POST['discount_value'])){
-		$error['discount_value']= "discount value is required";
-	}else{
-		$moq=$_POST['discount_value'];
-	}
+	// if(empty($_POST['sku'])){
+	// 	$error['sku'] =  "sku can be required" ;
+	// }else{
+	// 	$sku=$_POST['sku'];
+	// 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $sku)){
+	// 		$error['sku'] =  "sku can be only letter" ;
+	// 	}
+	// }
+	// if(empty($_POST['moq'])){
+	// 	$error['moq']= "moq is required";
+	// }else{
+	// 	$moq=$_POST['moq'];
+	// }
+	// if(empty($_POST['search_keywords'])){
+	// 	$error['search_keywords'] =  "search_keywords can be required" ;
+	// }else{
+	// 	$search_keywords=$_POST['search_keywords'];
+	// 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $search_keywords)){
+	// 		$error['search_keywords'] =  "search_keywords can be only letter" ;
+	// 	}
+	// }
+	// if(empty($_POST['price'])){
+	// 	$error['price']= "price is required";
+	// }else{
+	// 	$moq=$_POST['price'];
+	// }
+	// if(empty($_POST['discount_type'])){
+	// 	$error['discount_type'] =  "discount typecan be required" ;
+	// }else{
+	// 	$search_keywords=$_POST['discount_type'];
+	// 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $discount_type)){
+	// 		$error['discount_type'] =  "discount_type can be only letter" ;
+	// 	}
+	// }
+	// if(empty($_POST['discount_value'])){
+	// 	$error['discount_value']= "discount value is required";
+	// }else{
+	// 	$moq=$_POST['discount_value'];
+	// }
 	
 	if ($error['name'] != '' || $error['slug'] != '' || $error['sku'] != '' || $error['moq'] != '' || $error['categories'] != '' || $error['search_keywords'] != '' || $error['price'] != '' || $error['discount_type'] != '' || $error['discount_value'] != ''){
 		echo "Error";
@@ -160,66 +137,77 @@ if(isset($_GET['id'])){
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="js/jquery.validate.js"></script>
-	<script src="js/product.form.js"></script>
+	<script src="js/product.form.js"></script> -->
 </head>
 <body>
 	<div class ="container">
-		<form method="POST">
+		<form method="POST" id="productform">
 			<div class="form-group">
 				<div class="row">
 					<div class="col">
-						Name:<input type="text" name="name" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($name)?>" required>
+						<label for="name">name</label>
+						<input type="text" id="name" name="name" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($name)?>">
 						<span id="name" style="color: red"><?php echo $error['name'];?></span>
 					</div>
 					<div class="col">
-						Slug:<input type="text" name="slug" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($slug) ?>" required>
+						<label for="slug">slug</label>
+						<input type="text" id="slug" name="slug" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($slug) ?>">
 						<span id="slug" style="color: red"><?php echo $error['slug'];?></span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col">
-						Sku :<input type="text" name="sku" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($sku) ?>" required>
+						<label for="sku">sku</label>
+						<input type="text" id="sku" name="sku" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($sku) ?>">
 						<span id="sku" style="color: red"><?php echo $error['sku'];?></span>
 					</div>
 					<div class="col">
-						moq :<input type="number" name="moq" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($moq) ?>" required>
-						<span id="moq" style="color: red"><?php echo $error['moq'];?></span>
+						<label for="moq">moq</label>
+						<input name="moq" id ="moq" class="form-control mb-2 mr-sm-2">
+						<span id="errmsg"></span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col">
-						categories :<input type="text" name="categories" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($categories) ?>" required>
+						<label for="categories">categories</label>
+						<input type="text" id="categories" name="categories" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($categories) ?>">
 						<span id="categories" style="color: red"><?php echo $error['categories'];?></span>
 					</div>
 					<div class="col">
-						search_keywords:<input type="text" name="search_keywords" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($search_keywords) ?>" required>
+						<label for="search_keywords">search_keywords</label>
+						<input type="text" id="search_keywords" name="search_keywords" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($search_keywords) ?>">
 						<span id="search_keywords" style="color: red"><?php echo $error['search_keywords'];?></span>
 					</div>
 				</div>
 				<div class="row">
 					<div class ="col">
-						price:<input type="number" name="price" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($price) ?>" required>
+						<label for="price">price</label>
+						<input type="number" name="price" id ="price" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($price) ?>">
 						<span id="price" style="color:red"><?php echo $error['price'];?></span>
 					</div>
 					<div class="col">
-						discount_type:<input type="text" name="discount_type" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($discount_type) ?>" required>
+						<label for="discount_type">discount type</label>
+						<input type="text" id="discount_type" name="discount_type" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($discount_type) ?>">
 						<span id="discount_type" style="color: red"><?php echo $error['discount_type'];?></span>
 					</div>
 				</div>
-				discount_value:<input type="number" name="discount_value" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($discount_value) ?>" required>
+				<label for="discount_value">discount value</label>
+				<input type="number" name="discount_value" id="discount_value" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($discount_value) ?>">
 				<span id="discount_value" style="color: red"><?php echo $error['discount_value'];?></span>
 				
-				<button type="submit" name="submit" class = "btn btn-primary" value="submit">Submit</button> 
+				<button type="submit" name="submit"id ="submit" class = "btn btn-primary" value="submit">Submit</button> 
 			</div>
 		</form>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
-	<script>
-		$("#commentform").validate();
-	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  -->
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="jquery.validate.js"></script>
+		<script type="text/javascript" src="jquery.js"></script>
 </body>
 </html>
