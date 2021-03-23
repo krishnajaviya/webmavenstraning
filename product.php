@@ -165,7 +165,7 @@ if(isset($_GET['id'])){
 					</div>
 					<div class="col">
 						<label for="moq">moq</label>
-						<input name="moq" id ="moq" class="form-control mb-2 mr-sm-2">
+						<input name="moq" id ="moq" class="form-control mb-2 mr-sm-2" type="number" value="<?php echo htmlspecialchars($moq)?>">
 						<span id="errmsg"></span>
 					</div>
 				</div>
@@ -208,6 +208,96 @@ if(isset($_GET['id'])){
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 		<script type="text/javascript" src="jquery.validate.js"></script>
-		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+	$("#productform").validate({
+		rules :{
+			name :{
+			  required: true
+			},
+			slug :{
+				required : true
+			},
+			sku :{
+				required : true
+			},
+			moq :{
+				required :true
+			},
+			categories: {
+    			required: true
+    		},
+    		search_keywords: {
+    			required: true
+    		},
+    		price: {
+    			required: true
+    		},
+    		discount_type: {
+    			required: true
+    		},
+    		discount_value: {
+    			required: true
+    		},
+		},
+			messages :{
+
+			 	name : {
+			 		required: "please enter name"
+			 	},
+			 	slug : {
+			 		required: "please enter slug"
+			 	},
+			 	sku : {
+			 		required : "please enter sku"
+			 	},
+			 	moq :{
+			 		required : "please enter moq"
+			 	},
+			 	categories: {
+			 		required : "please enter categories"
+			 	},
+			 	search_keywords: {
+    				required: "please enter Search Keywords"
+    			},
+    			price: {
+    				required: "please enter Price"
+    			},
+    			discount_type: {
+    				required: "please enter Discount Type"
+    			},
+    			discount_value: {
+    				required: "please enter Discount Value"
+    			}
+			}
+		
+	});
+	$("#moq").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $("#errmsg").html("Digits Only").show().fadeOut("slow");
+               return false;
+    }
+   });
+});
+	<?php if(!isset($_GET['id'])){?>
+	// 	$("#name").on("keyup", function(){
+	//    var value = $(this).val();
+	//     value = value.replace(/a-z A-z 0-9) 
+	//    $("#slug").val(value);
+	// });
+	$('#name').keyup(function() {
+    var replaceSpace = $(this).val(); 
+
+    var result = replaceSpace.replace("", "-");
+
+    $("#slug").val(result);
+
+});
+	<?php }?>
+	
+
+</script>
 </body>
 </html>
