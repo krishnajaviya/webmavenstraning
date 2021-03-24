@@ -165,8 +165,8 @@ if(isset($_GET['id'])){
 					</div>
 					<div class="col">
 						<label for="moq">moq</label>
-						<input name="moq" id ="moq" class="form-control mb-2 mr-sm-2" type="number" value="<?php echo htmlspecialchars($moq)?>">
-						<span id="errmsg"></span>
+						<input name="moq" id ="moq" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($moq)?>">
+						<span id="moq"></span>
 					</div>
 				</div>
 				<div class="row">
@@ -219,10 +219,13 @@ if(isset($_GET['id'])){
 				required : true
 			},
 			sku :{
-				required : true
+				required : true,
+				
 			},
 			moq :{
-				required :true
+				required :true,
+				digits:true
+			
 			},
 			categories: {
     			required: true
@@ -252,7 +255,8 @@ if(isset($_GET['id'])){
 			 		required : "please enter sku"
 			 	},
 			 	moq :{
-			 		required : "please enter moq"
+			 		required : "please enter moq",
+			 		digits : "only digits allow"
 			 	},
 			 	categories: {
 			 		required : "please enter categories"
@@ -272,25 +276,14 @@ if(isset($_GET['id'])){
 			}
 		
 	});
-	$("#moq").keypress(function (e) {
-     //if the letter is not digit then display error and don't type anything
-     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-        //display error message
-        $("#errmsg").html("Digits Only").show().fadeOut("slow");
-               return false;
-    }
-   });
+
+	
 });
 	<?php if(!isset($_GET['id'])){?>
-	// 	$("#name").on("keyup", function(){
-	//    var value = $(this).val();
-	//     value = value.replace(/a-z A-z 0-9) 
-	//    $("#slug").val(value);
-	// });
 	$('#name').keyup(function() {
     var replaceSpace = $(this).val(); 
 
-    var result = replaceSpace.replace("", "-");
+    var result = replaceSpace.replace(/ /g, "-").replace(/[_\s\@\!\#\$\%\^\&\*]/g, '');
 
     $("#slug").val(result);
 
