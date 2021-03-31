@@ -1,33 +1,13 @@
 <?php 
 include "dbconn.php";
-include_once('functions.php');
-
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
+require_once "functions.php";
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin:*');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
-
+// header('Access-Control-Allow-Origin:*');
+// header('Access-Control-Allow-Methods: POST');
+// header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 $name = $slug = $sku = $moq = $categories = $search_keywords = $price = $discount_type = $discount_value ='';
 $error = array();
-
-//$test="test";
-
 $data=json_decode(file_get_contents("php://input"), true);
-
-/*$name = $data['name'];
-$slug = $data['slug'];
-$sku = $data['sku'];
-$moq = $data['moq'];
-$categories = $data['categories'];
-$search_keywords = $data['search_keywords'];
-$price = $data['price'];
-$discount_type = $data['discount_type'];
-$discount_value = $data['discount_value'];*/
-
 
 if(empty($data['name'])){
 	$error['name']="Name Is Required";
@@ -79,9 +59,9 @@ if(empty($data['discount_value'])){
 }
 
 if($error){
-	echo "<pre>";
-	print_r($error);	
-	echo "error";
+	echo json_encode("<pre>");
+	echo json_encode($error);	
+	echo json_encode("error");
 }else{
 
 
