@@ -21,63 +21,71 @@ $discount_type = get('discount_type');
 $discount_value = get('discount_value');
 
 if (isset($_POST['submit'])){
-	// if (empty($_POST['name'])){
-	// 	$error['name']="name can be required" ;
-	// }else{
-	// 	$name=$_POST['name'];
-	// 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $name)){
-	// 		$error['name'] =  "name can be only letter" ;
-	// 	}
-	// }
+	if (empty($_POST['name'])){
+		$error['name']="name can be required" ;
+	}else{
+		$name=$_POST['name'];
+		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $name)){
+			$error['name'] =  "name can be only letter" ;
+		}
+	}
 
-	// if (empty($_POST['slug'])){
-	// 	$error['slug'] =  "slug can be required" ;
-	// }else{
-	// 	$slug=$_POST['slug'];
-	// 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $slug)){
-	// 		$error['slug'] =  "slug can be only letter" ;
-	// 	}
-	// }
+	if (empty($_POST['slug'])){
+		$error['slug'] =  "slug can be required" ;
+	}else{
+		$slug=$_POST['slug'];
+		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $slug)){
+			$error['slug'] =  "slug can be only letter" ;
+		}
+	}
 	
-	// if(empty($_POST['sku'])){
-	// 	$error['sku'] =  "sku can be required" ;
-	// }else{
-	// 	$sku=$_POST['sku'];
-	// 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $sku)){
-	// 		$error['sku'] =  "sku can be only letter" ;
-	// 	}
-	// }
-	// if(empty($_POST['moq'])){
-	// 	$error['moq']= "moq is required";
-	// }else{
-	// 	$moq=$_POST['moq'];
-	// }
-	// if(empty($_POST['search_keywords'])){
-	// 	$error['search_keywords'] =  "search_keywords can be required" ;
-	// }else{
-	// 	$search_keywords=$_POST['search_keywords'];
-	// 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $search_keywords)){
-	// 		$error['search_keywords'] =  "search_keywords can be only letter" ;
-	// 	}
-	// }
-	// if(empty($_POST['price'])){
-	// 	$error['price']= "price is required";
-	// }else{
-	// 	$moq=$_POST['price'];
-	// }
-	// if(empty($_POST['discount_type'])){
-	// 	$error['discount_type'] =  "discount typecan be required" ;
-	// }else{
-	// 	$search_keywords=$_POST['discount_type'];
-	// 	if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $discount_type)){
-	// 		$error['discount_type'] =  "discount_type can be only letter" ;
-	// 	}
-	// }
-	// if(empty($_POST['discount_value'])){
-	// 	$error['discount_value']= "discount value is required";
-	// }else{
-	// 	$moq=$_POST['discount_value'];
-	// }
+	if(empty($_POST['sku'])){
+		$error['sku'] =  "sku can be required" ;
+	}else{
+		$sku=$_POST['sku'];
+		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $sku)){
+			$error['sku'] =  "sku can be only letter" ;
+		}
+	}
+	if(empty($_POST['moq'])){
+		$error['moq']= "moq is required";
+	}else{
+		$moq=$_POST['moq'];
+	}
+	if(empty($_POST['categories'])){
+		$error['categories'] =  "categories can be required" ;
+	}else{
+		$categories=$_POST['categories'];
+		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $categories)){
+			$error['categories'] =  "categories can be only letter" ;
+		}
+	}
+	if(empty($_POST['search_keywords'])){
+		$error['search_keywords'] =  "search_keywords can be required" ;
+	}else{
+		$search_keywords=$_POST['search_keywords'];
+		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $search_keywords)){
+			$error['search_keywords'] =  "search_keywords can be only letter" ;
+		}
+	}
+	if(empty($_POST['price'])){
+		$error['price']= "price is required";
+	}else{
+		$moq=$_POST['price'];
+	}
+	if(empty($_POST['discount_type'])){
+		$error['discount_type'] =  "discount type can be required" ;
+	}else{
+		$search_keywords=$_POST['discount_type'];
+		if(!preg_match('/^([A-Za-z\s\@\0-9]+)(,\s*[A-Za-z\s\0-9]*)*$/', $discount_type)){
+			$error['discount_type'] =  "discount_type can be only letter" ;
+		}
+	}
+	if(empty($_POST['discount_value'])){
+		$error['discount_value']= "discount value is required";
+	}else{
+		$moq=$_POST['discount_value'];
+	}
 	
 	if ($error['name'] != '' || $error['slug'] != '' || $error['sku'] != '' || $error['moq'] != '' || $error['categories'] != '' || $error['search_keywords'] != '' || $error['price'] != '' || $error['discount_type'] != '' || $error['discount_value'] != ''){
 		echo "Error";
@@ -166,7 +174,7 @@ if(isset($_GET['id'])){
 					<div class="col">
 						<label for="moq">moq</label>
 						<input name="moq" id ="moq" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($moq)?>">
-						<span id="moq"></span>
+						<span id="moq" style="color: red"><?php echo $error['moq'];?></span>
 					</div>
 				</div>
 				<div class="row">
@@ -177,10 +185,27 @@ if(isset($_GET['id'])){
 					</div>
 					<div class="col">
 						<label for="search_keywords">search_keywords</label>
-						<input type="text" id="search_keywords" name="search_keywords" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($search_keywords) ?>">
+						<div class="input-group">
+
+						   <input type="text" id="search_keywords" name="search_keywords" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($search_keywords) ?>">
+						   <span class="input-group-btn">
+						        <button class="btn btn-default" type="button" id="btnAdd">Add</button>
+						   </span>
+						</div>
 						<span id="search_keywords" style="color: red"><?php echo $error['search_keywords'];?></span>
-					</div>
-				</div>
+						
+						</div>
+						</div>
+						<div class ="row">
+							<div class="col">
+							</div>
+							<div class="col">
+								<div id="TextBoxContainer">
+								</div>
+							</div>
+						</div>
+						
+				
 				<div class="row">
 					<div class ="col">
 						<label for="price">price</label>
@@ -209,86 +234,97 @@ if(isset($_GET['id'])){
 		<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 		<script type="text/javascript" src="jquery.validate.js"></script>
 		<script type="text/javascript">
-		$(document).ready(function(){
-	$("#productform").validate({
-		rules :{
-			name :{
-			  required: true
-			},
-			slug :{
-				required : true
-			},
-			sku :{
-				required : true,
+		$(function () {
+    	$("#btnAdd").bind("click", function () {
+        var div = $("<div />");
+        div.html(GetDynamicTextBox(""));
+        $("#TextBoxContainer").append(div);
+       });
+    });''
+	function GetDynamicTextBox(value) {
+       return '<input name = "DynamicTextBox" type="text" value = "' + value + '"/>'
+            
+}
+// 		$(document).ready(function(){
+// 	$("#productform").validate({
+// 		rules :{
+// 			name :{
+// 			  required: true
+// 			},
+// 			slug :{
+// 				required : true
+// 			},
+// 			sku :{''
+// 				required : true,
 				
-			},
-			moq :{
-				required :true,
-				digits:true
+// 			},
+// 			moq :{
+// 				required :true,
+// 				digits:true
 			
-			},
-			categories: {
-    			required: true
-    		},
-    		search_keywords: {
-    			required: true
-    		},
-    		price: {
-    			required: true
-    		},
-    		discount_type: {
-    			required: true
-    		},
-    		discount_value: {
-    			required: true
-    		},
-		},
-			messages :{
+// 			},
+// 			categories: {
+//     			required: true
+//     		},
+//     		search_keywords: {
+//     			required: true
+//     		},
+//     		price: {
+//     			required: true
+//     		},
+//     		discount_type: {
+//     			required: true
+//     		},
+//     		discount_value: {
+//     			required: true
+//     		},
+// 		},
+// 			messages :{
 
-			 	name : {
-			 		required: "please enter name"
-			 	},
-			 	slug : {
-			 		required: "please enter slug"
-			 	},
-			 	sku : {
-			 		required : "please enter sku"
-			 	},
-			 	moq :{
-			 		required : "please enter moq",
-			 		digits : "only digits allow"
-			 	},
-			 	categories: {
-			 		required : "please enter categories"
-			 	},
-			 	search_keywords: {
-    				required: "please enter Search Keywords"
-    			},
-    			price: {
-    				required: "please enter Price"
-    			},
-    			discount_type: {
-    				required: "please enter Discount Type"
-    			},
-    			discount_value: {
-    				required: "please enter Discount Value"
-    			}
-			}
+// 			 	name : {
+// 			 		required: "please enter name"
+// 			 	},
+// 			 	slug : {
+// 			 		required: "please enter slug"
+// 			 	},s
+// 			 	sku : {
+// 			 		required : "please enter sku"
+// 			 	},
+// 			 	moq :{
+// 			 		required : "please enter moq",
+// 			 		digits : "only digits allow"
+// 			 	},
+// 			 	categories: {
+// 			 		required : "please enter categories"
+// 			 	},
+// 			 	search_keywords: {
+//     				required: "please enter Search Keywords"
+//     			},
+//     			price: {
+//     				required: "please enter Price"
+//     			},
+//     			discount_type: {
+//     				required: "please enter Discount Type"
+//     			},
+//     			discount_value: {
+//     				required: "please enter Discount Value"
+//     			}
+// 			}
 		
-	});
+// 	});
 
-	
-});
-	<?php if(!isset($_GET['id'])){?>
-	$('#name').keyup(function() {
-    var replaceSpace = $(this).val(); 
+	s
+// });
+// 	<?php if(!isset($_GET['id'])){?>
+// 	$('#name').keyup(function() {
+//     var replaceSpace = $(this).val(); 
 
-    var result = replaceSpace.replace(/ /g, "-").replace(/[_\s\@\!\#\$\%\^\&\*]/g, '');
+//     var result = replaceSpace.replace(/ /g, "-").replace(/[_\s\@\!\#\$\%\^\&\*]/g, '');
 
-    $("#slug").val(result);
+//     $("#slug").val(result);
 
-});
-	<?php }?>
+// });
+// 	<?php }?>
 	
 
 </script>
