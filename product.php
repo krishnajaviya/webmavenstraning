@@ -1,14 +1,8 @@
 <?php 
 include "dbconn.php";
 include_once('functions.php');
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 $name = $slug = $sku = $moq = $categories = $search_keywords = $price = $discount_type = $discount_value ='';
 $error = array('name' =>'', 'slug' =>'', 'sku' => '','moq'=>'','categories'=>'','search_keywords'=>'','price'=>'','discount_type'=>'','discount_value'=>'');
-
 $id = get('id');
 $name = get('name');
 $slug = get('slug');
@@ -19,7 +13,6 @@ $search_keywords = get('search_keywords');
 $price = get('price');
 $discount_type = get('discount_type');
 $discount_value = get('discount_value');
-
 if (isset($_POST['submit'])){
 	if (empty($_POST['name'])){
 		$error['name']="name can be required" ;
@@ -29,7 +22,6 @@ if (isset($_POST['submit'])){
 			$error['name'] =  "name can be only letter" ;
 		}
 	}
-
 	if (empty($_POST['slug'])){
 		$error['slug'] =  "slug can be required" ;
 	}else{
@@ -38,7 +30,6 @@ if (isset($_POST['submit'])){
 			$error['slug'] =  "slug can be only letter" ;
 		}
 	}
-	
 	if(empty($_POST['sku'])){
 		$error['sku'] =  "sku can be required" ;
 	}else{
@@ -86,7 +77,6 @@ if (isset($_POST['submit'])){
 	}else{
 		$moq=$_POST['discount_value'];
 	}
-	
 	if ($error['name'] != '' || $error['slug'] != '' || $error['sku'] != '' || $error['moq'] != '' || $error['categories'] != '' || $error['search_keywords'] != '' || $error['price'] != '' || $error['discount_type'] != '' || $error['discount_value'] != ''){
 		echo "Error";
 	}else{
@@ -153,75 +143,69 @@ if(isset($_GET['id'])){
 	<div class ="container">
 		<form method="POST" id="productform">
 			<div class="form-group">
+				<button id="AddMore" class="btn btn-default" type="button">AddMore</button>
 				<div class="row">
 					<div class="col">
-						<label for="name">name</label>
+						<label for="name" id="pname">name</label>
 						<input type="text" id="name" name="name" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($name)?>">
 						<span id="name" style="color: red"><?php echo $error['name'];?></span>
 					</div>
 					<div class="col">
-						<label for="slug">slug</label>
+						<label for="slug" id="pslug">slug</label>
 						<input type="text" id="slug" name="slug" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($slug) ?>">
 						<span id="slug" style="color: red"><?php echo $error['slug'];?></span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col">
-						<label for="sku">sku</label>
+						<label for="sku" id="psku">sku</label>
 						<input type="text" id="sku" name="sku" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($sku) ?>">
 						<span id="sku" style="color: red"><?php echo $error['sku'];?></span>
 					</div>
 					<div class="col">
-						<label for="moq">moq</label>
+						<label for="moq" id="pmoq">moq</label>
 						<input name="moq" id ="moq" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($moq)?>">
 						<span id="moq" style="color: red"><?php echo $error['moq'];?></span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col">
-						<label for="categories">categories</label>
+						<label for="categories" id="pcategories">categories</label>
 						<input type="text" id="categories" name="categories" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($categories) ?>">
 						<span id="categories" style="color: red"><?php echo $error['categories'];?></span>
 					</div>
 					<div class="col">
-						<label for="search_keywords">search_keywords</label>
+						<label for="search_keywords" id="psearch_keywords">search_keywords</label>
 						<div class="input-group">
-
-						   <input type="text" id="search_keywords" name="search_keywords" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($search_keywords) ?>">
-						   <span class="input-group-btn">
+						 	<input type="text" id="search_keywords" name="search_keywords" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($search_keywords) ?>">
+						   	<span class="input-group-btn">
 						        <button class="btn btn-default" type="button" id="btnAdd">Add</button>
-						   </span>
+						   	</span>  
+						   	<div id="TextBoxContainer">
+							</div> 	 	
 						</div>
 						<span id="search_keywords" style="color: red"><?php echo $error['search_keywords'];?></span>
-						
-						</div>
-						</div>
-						<div class ="row">
-							<div class="col">
-							</div>
-							<div class="col">
-								<div id="TextBoxContainer">
-								</div>
-							</div>
-						</div>
-						
-				
+					</div>
+				</div>
 				<div class="row">
 					<div class ="col">
-						<label for="price">price</label>
+						<label for="price" id="pprice">price</label>
 						<input type="number" name="price" id ="price" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($price) ?>">
 						<span id="price" style="color:red"><?php echo $error['price'];?></span>
 					</div>
 					<div class="col">
-						<label for="discount_type">discount type</label>
+						<label for="discount_type" id="pdiscount_type">discount type</label>
 						<input type="text" id="discount_type" name="discount_type" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($discount_type) ?>">
 						<span id="discount_type" style="color: red"><?php echo $error['discount_type'];?></span>
 					</div>
 				</div>
-				<label for="discount_value">discount value</label>
+				<label for="discount_value" id="pdiscount_value">discount value</label>
 				<input type="number" name="discount_value" id="discount_value" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($discount_value) ?>">
 				<span id="discount_value" style="color: red"><?php echo $error['discount_value'];?></span>
 				
+				<div id="moreproduct">
+					<label id="pproduct" for="Add Product"></label><br>
+				</div>
 				<button type="submit" name="submit"id ="submit" class = "btn btn-primary" value="submit">Submit</button> 
 			</div>
 		</form>
@@ -231,102 +215,137 @@ if(isset($_GET['id'])){
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  -->
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
-		<script type="text/javascript" src="jquery.validate.js"></script>
-		<script type="text/javascript">
-		$(function () {
-    	$("#btnAdd").bind("click", function () {
-        var div = $("<div />");
-        div.html(GetDynamicTextBox(""));
-        $("#TextBoxContainer").append(div);
-       });
-    });''
-	function GetDynamicTextBox(value) {
-       return '<input name = "DynamicTextBox" type="text" value = "' + value + '"/>'
-            
-}
-// 		$(document).ready(function(){
-// 	$("#productform").validate({
-// 		rules :{
-// 			name :{
-// 			  required: true
-// 			},
-// 			slug :{
-// 				required : true
-// 			},
-// 			sku :{''
-// 				required : true,
-				
-// 			},
-// 			moq :{
-// 				required :true,
-// 				digits:true
-			
-// 			},
-// 			categories: {
-//     			required: true
-//     		},
-//     		search_keywords: {
-//     			required: true
-//     		},
-//     		price: {
-//     			required: true
-//     		},
-//     		discount_type: {
-//     			required: true
-//     		},
-//     		discount_value: {
-//     			required: true
-//     		},
-// 		},
-// 			messages :{
-
-// 			 	name : {
-// 			 		required: "please enter name"
-// 			 	},
-// 			 	slug : {
-// 			 		required: "please enter slug"
-// 			 	},s
-// 			 	sku : {
-// 			 		required : "please enter sku"
-// 			 	},
-// 			 	moq :{
-// 			 		required : "please enter moq",
-// 			 		digits : "only digits allow"
-// 			 	},
-// 			 	categories: {
-// 			 		required : "please enter categories"
-// 			 	},
-// 			 	search_keywords: {
-//     				required: "please enter Search Keywords"
-//     			},
-//     			price: {
-//     				required: "please enter Price"
-//     			},
-//     			discount_type: {
-//     				required: "please enter Discount Type"
-//     			},
-//     			discount_value: {
-//     				required: "please enter Discount Value"
-//     			}
-// 			}
-		
-// 	});
-
-	s
-// });
-// 	<?php if(!isset($_GET['id'])){?>
-// 	$('#name').keyup(function() {
-//     var replaceSpace = $(this).val(); 
-
-//     var result = replaceSpace.replace(/ /g, "-").replace(/[_\s\@\!\#\$\%\^\&\*]/g, '');
-
-//     $("#slug").val(result);
-
-// });
-// 	<?php }?>
-	
-
-</script>
+	<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="jquery.validate.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#btnAdd').on('click', function () {
+		        $('#search_keywords')
+		            .clone().val('')         
+		            .appendTo("#TextBoxContainer");
+			});
+			$('#AddMore').on('click',function(){
+				// $("#pproduct").html("Add Product" + "<br/>") 
+				// .appendTo("#moreproduct");
+				// for( var i=1 ; i<=n;i++){
+				// 	echo 'product'. $i;
+				// }
+				$("#pname").html("name")
+				.appendTo("#moreproduct");
+				$("#name")
+				.clone().val('')
+				.appendTo("#moreproduct");
+				$("#pslug").html("slug")
+				.appendTo("#moreproduct");
+				$("#slug")
+				.clone().val('')
+				.appendTo("#moreproduct");
+				$("#psku").html("sku")
+				.appendTo("#moreproduct");
+				$("#sku")
+				.clone().val('')
+				.appendTo("#moreproduct");
+				$("#pmoq").html("moq")
+				.appendTo("#moreproduct");
+				$("#moq")
+				.clone().val('')
+				.appendTo("#moreproduct");
+				$("#pcategories").html("categories")
+				.appendTo("#moreproduct");
+				$("#categories")
+				.clone().val('')
+				.appendTo("#moreproduct");
+				$("#psearch_keywords").html("search_keywords")
+				.appendTo("#moreproduct");
+				$("#search_keywords")
+				.clone().val('')
+				.appendTo("#moreproduct");
+				$("#pprice").html("price")
+				.appendTo("#moreproduct");
+				$("#price")
+				.clone().val('')
+				.appendTo("#moreproduct");
+				$("#pdiscount_type").html("discount_type")
+				.appendTo("#moreproduct");
+				$("#discount_type")
+				.clone().val('')
+				.appendTo("#moreproduct");
+				$("#pdiscount_value").html("discount_value")
+				.appendTo("#moreproduct");
+				$("#discount_value")
+				.clone().val('')
+				.appendTo("#moreproduct");
+			});
+			$("#productform").validate({
+				rules : {
+					name : {
+					  required: true
+					},
+					slug : {
+						required : true
+					},
+					sku : {
+						required : true	
+					},
+					moq : {
+						required :true,
+						digits:true
+					},
+					categories : {
+		    			required: true
+		    		},
+		    		search_keywords: {
+		    			required: true
+		    		},
+		    		price: {
+		    			required: true
+		    		},
+		    		discount_type: {
+		    			required: true
+		    		},
+		    		discount_value: {
+		    			required: true
+		    		}
+				},
+				messages : {
+				 	name : {
+				 		required: "please enter name"
+				 	},
+				 	slug : {
+				 		required: "please enter slug"
+				 	},
+				 	sku : {
+				 		required : "please enter sku"
+				 	},
+				 	moq : {
+				 		required : "please enter moq",
+				 		digits : "only digits allow"
+				 	},
+				 	categories : {
+				 		required : "please enter categories"
+				 	},
+				 	search_keywords : {
+	    				required: "please enter Search Keywords"
+	    			},
+	    			price : {
+	    				required: "please enter Price"
+	    			},
+	    			discount_type : {
+	    				required: "please enter Discount Type"
+	    			},
+	    			discount_value : {
+	    				required: "please enter Discount Value"
+	    			}
+				}
+			});
+		});
+		<?php if(!isset($_GET['id'])){?>
+			$('#name').keyup(function() {
+				var replaceSpace = $(this).val(); 
+				var result = replaceSpace.replace(/ /g, "-").replace(/[_\s\@\!\#\$\%\^\&\*]/g, '');
+				$("#slug").val(result);
+			});
+		<?php }?>
+	</script>
 </body>
 </html>
