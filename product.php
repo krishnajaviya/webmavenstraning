@@ -133,87 +133,81 @@ if(isset($_GET['id'])){
 	<title></title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script src="js/jquery.validate.js"></script>
-	<script src="js/product.form.js"></script> -->
 </head>
 <body>
 	<div class ="container">
 		<form method="POST" id="productform">
 			<div class="form-group">
 				<button id="AddMore" class="btn btn-default" type="button">AddMore</button>
-				<div class="row">
-					<div class="col">
-						<label for="name" id="pname">name</label>
-						<input type="text" id="name" name="name" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($name)?>">
-						<span id="name" style="color: red"><?php echo $error['name'];?></span>
-					</div>
-					<div class="col">
-						<label for="slug" id="pslug">slug</label>
-						<input type="text" id="slug" name="slug" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($slug) ?>">
-						<span id="slug" style="color: red"><?php echo $error['slug'];?></span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<label for="sku" id="psku">sku</label>
-						<input type="text" id="sku" name="sku" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($sku) ?>">
-						<span id="sku" style="color: red"><?php echo $error['sku'];?></span>
-					</div>
-					<div class="col">
-						<label for="moq" id="pmoq">moq</label>
-						<input name="moq" id ="moq" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($moq)?>">
-						<span id="moq" style="color: red"><?php echo $error['moq'];?></span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<label for="categories" id="pcategories">categories</label>
-						<input type="text" id="categories" name="categories" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($categories) ?>">
-						<span id="categories" style="color: red"><?php echo $error['categories'];?></span>
-					</div>
-					<div class="col">
-						<label for="search_keywords" id="psearch_keywords">search_keywords</label>
-						<div class="input-group">
-						 	<input type="text" id="search_keywords" name="search_keywords" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($search_keywords) ?>">
-						   	<span class="input-group-btn">
-						        <button class="btn btn-default" type="button" id="btnAdd">Add</button>
-						   	</span>  
-						   	<div id="TextBoxContainer">
-							</div> 	 	
+				<label for="product1">Product1</label>
+				<div class='input-form'>
+					<div class="row">
+						<div class="col">
+							<label for="name" id="pname">name</label>
+							<input type="text" id="name" name="name" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($name)?>">
+							<span id="name" style="color: red"><?php echo $error['name'];?></span>
 						</div>
-						<span id="search_keywords" style="color: red"><?php echo $error['search_keywords'];?></span>
+						<div class="col">
+							<label for="slug" id="pslug">slug</label>
+							<input type="text" id="slug" name="slug" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($slug) ?>">
+							<span id="slug" style="color: red"><?php echo $error['slug'];?></span>
+						</div>
 					</div>
+					<div class="row">
+						<div class="col">
+							<label for="sku" id="psku">sku</label>
+							<input type="text" id="sku" name="sku" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($sku) ?>">
+							<span id="sku" style="color: red"><?php echo $error['sku'];?></span>
+						</div>
+						<div class="col">
+							<label for="moq" id="pmoq">moq</label>
+							<input name="moq" id ="moq" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($moq)?>">
+							<span id="moq" style="color: red"><?php echo $error['moq'];?></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<label for="categories" id="pcategories">categories</label>
+							<input type="text" id="categories" name="categories" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($categories) ?>">
+							<span id="categories" style="color: red"><?php echo $error['categories'];?></span>
+						</div>
+						<div class="col">
+							<label for="search_keywords" id="psearch_keywords">search_keywords</label>
+							<div class="input-group">
+							 	<input type="text" id="search_keywords" name="search_keywords" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($search_keywords) ?>">
+							   	<span class="input-group-btn">
+							        <button class="btn btn-default" type="button" id="btnAdd">Add</button>
+							   	</span>  
+							   	<div id="TextBoxContainer">
+								</div> 	 	
+							</div>
+							<span id="search_keywords" style="color: red"><?php echo $error['search_keywords'];?></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class ="col">
+							<label for="price" id="pprice">price</label>
+							<input type="number" name="price" id ="price" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($price) ?>">
+							<span id="price" style="color:red"><?php echo $error['price'];?></span>
+						</div>
+						<div class="col">
+							<label for="discount_type" id="pdiscount_type">discount type</label>
+							<input type="text" id="discount_type" name="discount_type" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($discount_type) ?>">
+							<span id="discount_type" style="color: red"><?php echo $error['discount_type'];?></span>
+						</div>
+					</div>
+					<label for="discount_value" id="pdiscount_value">discount value</label>
+					<input type="number" name="discount_value" id="discount_value" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($discount_value) ?>">
+					<span id="discount_value" style="color: red"><?php echo $error['discount_value'];?></span>
 				</div>
-				<div class="row">
-					<div class ="col">
-						<label for="price" id="pprice">price</label>
-						<input type="number" name="price" id ="price" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($price) ?>">
-						<span id="price" style="color:red"><?php echo $error['price'];?></span>
-					</div>
-					<div class="col">
-						<label for="discount_type" id="pdiscount_type">discount type</label>
-						<input type="text" id="discount_type" name="discount_type" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($discount_type) ?>">
-						<span id="discount_type" style="color: red"><?php echo $error['discount_type'];?></span>
-					</div>
-				</div>
-				<label for="discount_value" id="pdiscount_value">discount value</label>
-				<input type="number" name="discount_value" id="discount_value" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($discount_value) ?>">
-				<span id="discount_value" style="color: red"><?php echo $error['discount_value'];?></span>
-				
 				<div id="moreproduct">
-					<label id="pproduct" for="Add Product"></label><br>
 				</div>
+				<div id ="counter"></div>
 				<button type="submit" name="submit"id ="submit" class = "btn btn-primary" value="submit">Submit</button> 
 			</div>
 		</form>
 	</div>
-	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  -->
-
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="jquery.validate.js"></script>
@@ -221,60 +215,36 @@ if(isset($_GET['id'])){
 		$(document).ready(function(){
 			$('#btnAdd').on('click', function () {
 		        $('#search_keywords')
-		            .clone().val('')         
-		            .appendTo("#TextBoxContainer");
+		        .clone().val('')         
+		        .appendTo("#TextBoxContainer");
 			});
+			var count = 1;
 			$('#AddMore').on('click',function(){
-				// $("#pproduct").html("Add Product" + "<br/>") 
-				// .appendTo("#moreproduct");
-				// for( var i=1 ; i<=n;i++){
-				// 	echo 'product'. $i;
-				// }
-				$("#pname").html("name")
-				.appendTo("#moreproduct");
-				$("#name")
-				.clone().val('')
-				.appendTo("#moreproduct");
-				$("#pslug").html("slug")
-				.appendTo("#moreproduct");
-				$("#slug")
-				.clone().val('')
-				.appendTo("#moreproduct");
-				$("#psku").html("sku")
-				.appendTo("#moreproduct");
-				$("#sku")
-				.clone().val('')
-				.appendTo("#moreproduct");
-				$("#pmoq").html("moq")
-				.appendTo("#moreproduct");
-				$("#moq")
-				.clone().val('')
-				.appendTo("#moreproduct");
-				$("#pcategories").html("categories")
-				.appendTo("#moreproduct");
-				$("#categories")
-				.clone().val('')
-				.appendTo("#moreproduct");
-				$("#psearch_keywords").html("search_keywords")
-				.appendTo("#moreproduct");
-				$("#search_keywords")
-				.clone().val('')
-				.appendTo("#moreproduct");
-				$("#pprice").html("price")
-				.appendTo("#moreproduct");
-				$("#price")
-				.clone().val('')
-				.appendTo("#moreproduct");
-				$("#pdiscount_type").html("discount_type")
-				.appendTo("#moreproduct");
-				$("#discount_type")
-				.clone().val('')
-				.appendTo("#moreproduct");
-				$("#pdiscount_value").html("discount_value")
-				.appendTo("#moreproduct");
-				$("#discount_value")
-				.clone().val('')
-				.appendTo("#moreproduct");
+				count++;
+    			$("#counter").text("product: "+ count).appendTo("#counter");
+    		    $('.input-form').clone().insertAfter("#moreproduct");
+    			// var name=$('#name').clone();
+    			// $(name).insertAfter('#moreproduct');
+    			// var slug=$('#slug').clone();
+    			// $(slug).insertAfter('#moreproduct');
+				// $("#pname").clone().appendTo("#moreproduct");
+				// $("#name").clone().appendTo("#moreproduct:last");
+				// $("#pslug").clone().appendTo("#moreproduct");
+				// $("#slug").clone().appendTo("#moreproduct");
+				// $("#psku").clone().appendTo("#moreproduct");
+				// $("#sku").clone().appendTo("#moreproduct");
+				// $("#pmoq").clone().appendTo("#moreproduct");
+				// $("#moq").clone().appendTo("#moreproduct");
+				// $("#pcategories").clone().appendTo("#moreproduct");
+				// $("#categories").clone().appendTo("#moreproduct");
+				// $("#psearch_keywords").clone().appendTo("#moreproduct");
+				// $("#search_keywords").clone().appendTo("#moreproduct");
+				// $("#pprice").clone().appendTo("#moreproduct");
+				// $("#price").clone().appendTo("#moreproduct");
+				// $("#pdiscount_type").clone().appendTo("#moreproduct");
+				// $("#discount_type").clone().appendTo("#moreproduct");
+				// $("#pdiscount_value").clone().appendTo("#moreproduct");
+				// $("#discount_value").clone().appendTo("#moreproduct");
 			});
 			$("#productform").validate({
 				rules : {
