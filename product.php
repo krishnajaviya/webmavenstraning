@@ -141,7 +141,7 @@ if(isset($_GET['id'])){
 			<div class="form-group">
 				<button id="AddMore" class="btn btn-default" type="button">AddMore</button>
 				<div class="input-holder">
-					<label for="product1">Product<span class ="count">1</span></label>
+					<label for="product1">Product<span class ="count">1</span></label>	
 					<div class="row">
 						<div class="col">
 							<label for="name" id="pname">name</label>
@@ -179,7 +179,7 @@ if(isset($_GET['id'])){
 								<span class="input-group-btn">
 								<button class="btn btn-default" type="button" id="btnAdd">Add</button>
 								</span>  
-								<div id="TextBoxContainer">
+								<div class ="TextBoxContainer">
 								</div> 	 	
 							</div>
 							<span id="search_keywords" style="color: red"><?php echo $error['search_keywords'];?></span>
@@ -201,8 +201,8 @@ if(isset($_GET['id'])){
 					<input type="number" name="discount_value" id="discount_value" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($discount_value) ?>">
 					<span id="discount_value" style="color: red"><?php echo $error['discount_value'];?></span>
 				</div>
-				<div id="add">
-				</div>	
+				<div class="past">
+				</div>
 				<button type="submit" name="submit"id ="submit" class = "btn btn-primary" value="submit">Submit</button> 
 			</div>
 		</form>
@@ -212,17 +212,16 @@ if(isset($_GET['id'])){
 	<script type="text/javascript" src="jquery.validate.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#btnAdd').on('click', function () {
-		        $('#search_keywords')
-		        .clone().val('')         
-		        .appendTo("#TextBoxContainer");
-			});
-			$('#AddMore').click(function(e){
-  				$htmltemplate = $('.input-holder').clone();
-  				//$htmltemplate.find('.count').text($('.count').length + 1);
-  				//$htmltemplate.text($('.input-holder'). length+1).find('.count');
-  				$('.input-holder').append($htmltemplate);
+			$('#AddMore').on('click', function(){
+  				$htmltemplate = $('.input-holder:last').clone();
+  				$htmltemplate.find('.count').text($('.input-holder').length + 1);
+  				$('.past').append($htmltemplate);
      		});
+     		$('.container').on('click','#btnAdd', function(){
+     			$data=$("#search_keywords").clone();
+		        $('.TextBoxContainer').append($data); 
+		       // $(this).closest('#search_keywords').clone().append(".TextBoxContainer");
+		    });
 			$("#productform").validate({
 				rules : {
 					name : {
