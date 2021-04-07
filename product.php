@@ -177,7 +177,7 @@ if(isset($_GET['id'])){
 							<div class="input-group">
 								<input type="text" id="search_keywords" name="search_keywords" class="form-control mb-2 mr-sm-2" value="<?php echo htmlspecialchars($search_keywords) ?>">
 								<span class="input-group-btn">
-								<button class="btn btn-default" type="button" id="btnAdd">Add</button>
+								<button class="clone" type="button" id="btnAdd">Add</button>
 								</span>  
 								<div class ="TextBoxContainer">
 								</div> 	 	
@@ -213,19 +213,23 @@ if(isset($_GET['id'])){
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#AddMore').on('click', function(){
-  				$htmltemplate = $('.input-holder:last').clone();
+				//$data=$('#search_keywords').addClass('selected');
+  				$htmltemplate = $('.input-holder:first').clone();
   				$htmltemplate.find('.count').text($('.input-holder').length + 1);
-  				$('.past').append($htmltemplate);
-     		});
-     		$('.container').on('click','#btnAdd', function(){
-     			$data=$("#search_keywords").clone();
-		        $('.TextBoxContainer').append($data); 
-		       // $(this).closest('#search_keywords').clone().append(".TextBoxContainer");
-		    });
+  				$htmltemplate.find('#search_keywords').addClass('test-'+$('.input-holder').length);
+  				$('.past').append($htmltemplate);	
+     		});	
+			$(".container").on('click', "#btnAdd" ,function(){
+				$htmltemplate.find('.count').text($('.input-holder').length + 1);
+			});
+			// function clone(){
+			// 	$('#search_keywords').clone().appendTo(".TextBoxContainer");
+			// }
+			// $("button.clone").on("click" ,clone);
 			$("#productform").validate({
 				rules : {
 					name : {
-					  required: true
+					  required : true
 					},
 					slug : {
 						required : true
